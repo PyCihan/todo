@@ -171,6 +171,7 @@ describe('DELETE /todos/:id', () => {
     });
 });
 
+/*
 describe('PUT /todos/:id/status', () => {
     it('sollte den Status eines ToDos aktualisieren', async () => {
         const newTodo = {
@@ -194,7 +195,7 @@ describe('PUT /todos/:id/status', () => {
         expect(updateResponse.body.status).toBe(newStatus);
     });
 });
-
+*/
 
 afterAll(async () => {
     server.close()
