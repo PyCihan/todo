@@ -74,6 +74,7 @@ const swaggerOptions = {
 
 /** Zentrales Objekt für unsere Express-Applikation */
 const app = express();
+app.disable("x-powered-by"); //ergänzt damit 
 
 app.use(cookieParser())
 app.use(express.static('../frontend'));
@@ -101,7 +102,30 @@ const todoValidationRules = [
         .withMessage('Titel darf nicht leer sein')
         .isLength({ min: 3 })
         .withMessage('Titel muss mindestens 3 Zeichen lang sein'),
+        check('due')
+        .optional({ nullable: true })
+        .isISO8601()
+        .withMessage('Es muss ein gültiges Datum eingegeben werden'),  
+    check('status')
+        .optional({ nullable: true })
+        .isInt({ min: 0, max: 2 })
+        .withMessage('Status muss eine ganze Zahl von 0 bis 2 sein'),
+    check('invalid')
+        .not()
+        .equals('invalid')
+        .withMessage('Dieses ToDo ist invalide')
 ];
+
+const validateToDo = (req, res, next) => {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+        return next();
+    }
+    return res.status(400).json({
+        error: "Bad Request",
+        errors: errors.array()
+    });
+}
 
 
 /** Middleware for authentication. 
@@ -109,8 +133,14 @@ const todoValidationRules = [
 */
 let authenticate = (req, res, next) => {
     // Dummy authentication
-    next();
-}
+        const token = req.headers.authorization;
+        if (!token) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+        // Verify the token here
+        // ...
+        next();
+    }
 
 
 /** Return all todos. 
@@ -269,10 +299,11 @@ app.put('/todos/:id', authenticate,
  *     '500':
  *       description: Serverfehler
  */
-app.post('/todos', authenticate,
+app.post('/todos', authenticate, todoValidationRules, validateToDo,
     async (req, res) => {
         let todo = req.body;
-        if (!todo) {
+        //prüfe ob todo attribute vorhanden oder nicht
+        if (!todo) { //diese Zeile prüft ob todo leer ist
             res.sendStatus(400, { message: "Todo fehlt" });
             return;
         }
@@ -325,7 +356,6 @@ app.delete('/todos/:id', authenticate,
             });
     }
 );
-
 
 
 let server;
