@@ -96,7 +96,7 @@ async function initDB() {
 }
 
 
-const todoValidationRules = [
+const todoValidationRules = [ //diese Variable setzt regeln für 
     check('title')
         .notEmpty()
         .withMessage('Titel darf nicht leer sein')
@@ -356,6 +356,29 @@ app.delete('/todos/:id', authenticate,
             });
     }
 );
+
+app.put('/todos/:id/status', authenticate, async (req, res) => {
+    let id = req.params.id;
+    let newStatus = req.body.status;
+
+    if (!newStatus) {
+        res.status(400).json({ message: "Kein neuer Status" });
+        return;
+    }
+
+    return db.update(id, { status: newStatus })
+        .then(todo => {
+            if (todo) {
+                res.status(200).json(todo);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
 
 
 let server;
