@@ -30,3 +30,5 @@ Die SonarQube-Tests wurden erfolgreich durchgeführt und die Ergebnisse sind im 
 Es wurde ein Security Hotspot gefunden, der allerdings nicht relevant ist, da es sich um eine Dummy-Authentifizierung handelt.
 ![alt text](image-1.png)
 
+Anmerkung: 
+- Gihub Action Build_test.yml wurde erstellt und getestet aber funktioniert nicht immer. Obwohl keine Änderungen vorgenommen wurden, wird der Build manchmal nicht durchgeführt.
