@@ -18,7 +18,11 @@ Probleme und Lösungen:
 - Es gab für die einzelnen Fälle (Titel fehlt, oder ist falsch etc.) kein Regelset. Entweder hätte nun in jedem Test Fallunterscheidungen eingeführt werden können, oder eine zentrale Regelung
     - Es wurden Validierungsregeln in der index.js erstellt um diese für den POST zu verwenden. 
 - Die Dummy-Authentication musste ausgebaut werden, dammit überhaupt eine Autentifizierung bzw. die Antwort 'Unauthorized' möglich ist.
-- 
+
 
 Ergebnisse und Tests:
-- 
+Die erstellten Tests und auch die Coverage-Testung laufen durch und werden wie erwartet angezeigt im Terminal (npm test)
+![alt text](image.png)
+Die Gesamt-Coverage beträgt ca. 82% wobei die Hauptfunktionalität (index.js) eine Abdeckung von 76% hat. Die uncovered Lines gehören zu den Funktionen und sind nicht unbedingt repräsentativ für die Funktionalität.
+
+
