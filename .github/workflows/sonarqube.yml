@@ -32,6 +32,7 @@ jobs:
             # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
             # mandatory
             -Dsonar.projectKey=todoCihan
+
             
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
