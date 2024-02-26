@@ -25,4 +25,8 @@ Die erstellten Tests und auch die Coverage-Testung laufen durch und werden wie e
 ![alt text](image.png)
 Die Gesamt-Coverage beträgt ca. 82% wobei die Hauptfunktionalität (index.js) eine Abdeckung von 76% hat. Die uncovered Lines gehören zu den Funktionen und sind nicht unbedingt repräsentativ für die Funktionalität.
 
+SonatQube:
+Die SonarQube-Tests wurden erfolgreich durchgeführt und die Ergebnisse sind im SonarQube Dashboard zu sehen.
+Es wurde ein Security Hotspot gefunden, der allerdings nicht relevant ist, da es sich um eine Dummy-Authentifizierung handelt.
+![alt text](image-1.png)
 
