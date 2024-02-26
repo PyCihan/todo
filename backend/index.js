@@ -96,7 +96,7 @@ async function initDB() {
 }
 
 
-const todoValidationRules = [ //diese Variable setzt regeln für 
+const todoValidationRules = [
     check('title')
         .notEmpty()
         .withMessage('Titel darf nicht leer sein')
